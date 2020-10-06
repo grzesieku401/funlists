@@ -1,0 +1,1 @@
+Page with colored list created to learn js.
