@@ -1,9 +1,12 @@
+body{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 .container{
     background: #40C4FF;
     width: 900px;
     height: 500px;
     margin: 0 auto;
-    margin-top: 40px;
+    margin-top: 40px; 
 }
 
 .main-list{
@@ -11,14 +14,24 @@
 }
 
 .main-list_option{
-    width: 20%;
     display: inline-block;
+    width: 25%;
+    display: block;
     padding: 20px 0;
+    float: left;
+ 
 }
 
-.main-list_option-div{
+.main-list_option-div{ 
     position: absolute;
+    clear: both;
     width: 100px;
-    height: 100px;
+
     background-color: red;
+    text-align: center;
+}
+
+p{
+    padding: 20px;
+    display: block;
 }
