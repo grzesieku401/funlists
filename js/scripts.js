@@ -1,45 +1,34 @@
-// dodanie potrzebnych zmiennych
+(function(){// dodanie potrzebnych zmiennych
 var container = document.querySelector(".container");
-    mainlistElements = document.querySelectorAll(".main-list_option")
-    mainlistOptionDiv = document.createElement("div")
-    mainlist = document.querySelector(".main-list");
-
-
-//dodanie klasy dla nowego obiektu
-mainlistOptionDiv.setAttribute("class","main-list_option-div");
+    mainlistElements = document.querySelectorAll("ul.main-list_option-ul"),
+    lastul = document.querySelector("li");
 
 // obsluga najechania myszka na element glownej listy
 function mouseOverMainListElement(event) {
-
-    if (event.target!==this) {
+   
+    if (lastul==event.target.closest("ul")) {
         return;
     }
 
-    var color = randomColor(),
-    randomnum = Math.round((Math.random()*4)+1);
+    var color = randomColor();
+    event.target.closest("ul").style = "background: "+color+"; transition: 1s "
 
-    event.target.style="background:"+color;
-    mainlistOptionDiv.style="background:"+color+"; width:"+event.target.getBoundingClientRect().width +"px; top:"+(event.target.getBoundingClientRect().top+event.target.getBoundingClientRect().height) +"px; left:"+event.target.getBoundingClientRect().x +"px;";  
-    
-    for (let i = 0; i < randomnum; i++) {
-        var somep = document.createElement("p")
-        somep.appendChild(document.createTextNode("Option"+(i+1)));   
-        mainlistOptionDiv.appendChild(somep);
+    for (let i = 1; i < event.target.closest("ul").children.length; i++) {
+         event.target.closest("ul").querySelectorAll("li")[i].classList.remove("hidden");    
     }
-    
-    container.appendChild(mainlistOptionDiv);
+
+    lastul=event.target.closest("ul");
+    event.target.classList.remove("hidden");
 }
 
-//obsluga zjechania myszkki z elementu glownej listy 
+//obsluga zjechania myszki z elementu glownej listy 
 function mouseLeaveMainListElement(event) {
-    document.
-    var allp = document.querySelectorAll(".main-list_option-div p");
-    for (let i = 0; i < allp.length; i++) {
-        mainlistOptionDiv.removeChild(allp[i]);  
-        console.log(i);
-    }
-    container.removeChild(mainlistOptionDiv);
+    for (let i = 1; i < event.target.closest("ul").children.length; i++) {
+        event.target.closest("ul").querySelectorAll("li")[i].classList.add("hidden");      
+   }
+   event.target.classList.remove("hidden");
 }
+
 
 //zwraca losowy kolor
 function randomColor(){
@@ -51,11 +40,18 @@ function randomColor(){
     return "#"+colortable.join("");
 }
 
-
- document.addEventListener("mouseleave",mouseLeaveMainListElement,false);  
+//zmienia kolor tla body
+function everyFew() {
+    document.body.style="background: "+randomColor()+ "; transition: 4s; ";
+    lastul = null;
+}
 
 //do kazdego elementu tablicy mainlistElements dodaj eventListener 
 for (let i = 0; i < mainlistElements.length; i++) {
-    mainlistElements[i].addEventListener("mouseover",mouseOverMainListElement,false);    
+
+    mainlistElements[i].style = "background: "+randomColor()+"; "
+    mainlistElements[i].addEventListener("mouseover",mouseOverMainListElement,true);    
     mainlistElements[i].addEventListener("mouseleave",mouseLeaveMainListElement,false);    
 };
+
+window.setInterval(everyFew,5000);})()

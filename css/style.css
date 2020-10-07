@@ -1,5 +1,6 @@
 body{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #5e4eb6;
 }
 .container{
     background: #40C4FF;
@@ -14,24 +15,20 @@ body{
 }
 
 .main-list_option{
-    display: inline-block;
     width: 25%;
     display: block;
-    padding: 20px 0;
     float: left;
- 
 }
 
-.main-list_option-div{ 
-    position: absolute;
-    clear: both;
-    width: 100px;
-
-    background-color: red;
-    text-align: center;
-}
-
-p{
+.main-list_option-ul-li{
     padding: 20px;
-    display: block;
+}
+
+.hidden{
+    display: none;
+}
+
+a{
+    text-decoration: none;
+    color:black;
 }
